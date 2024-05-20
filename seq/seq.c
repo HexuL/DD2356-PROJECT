@@ -55,7 +55,7 @@ int main() {
         t += dt;
 
         printf("Time: %f\n", t);
-            // Create directory if it doesn't exist
+            // Create directory if it doesn't existed
         const char *dirName = "outputdata";
         #ifdef _WIN32
             mkdir(dirName);
