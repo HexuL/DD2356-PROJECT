@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <time.h>
 
 // Function prototypes
 void initialize_arrays(double *U, bool *mask, int N);
@@ -18,6 +19,9 @@ void save_to_file(double *U, bool *mask, int N, const char *filename);
 
 
 int main() {
+    clock_t start, end;
+    double cpu_time_used;
+    
     // Simulation parameters
     int N = 256;          // resolution
     double boxsize = 1.0; // box size
@@ -44,7 +48,7 @@ int main() {
     initialize_arrays(U, mask, N);
 
     int outputCount = 1;
-
+    start = clock();
     // Simulation Main Loop
     while (t < tEnd) {
         compute_laplacian(U, laplacian, N);
@@ -63,7 +67,8 @@ int main() {
             mkdir(dirName, 0777);
         #endif
 
-        // Save state for plotting in real time
+        //Save state for plotting in real time
+        
         if (plotRealTime || t >= tEnd) {
             char filename[50];
             sprintf(filename, "%s/output_%d.txt",dirName, outputCount);
@@ -71,7 +76,7 @@ int main() {
             outputCount++;
         }
     }
-
+    end = clock();
     // Final save
     save_to_file(U, mask, N, "finitedifference.txt");
 
@@ -81,6 +86,11 @@ int main() {
     free(mask);
     free(laplacian);
     free(xlin);
+
+    
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    printf("Time taken: %f seconds\n", cpu_time_used);
 
     return 0;
 }
