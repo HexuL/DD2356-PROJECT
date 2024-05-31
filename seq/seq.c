@@ -80,13 +80,13 @@ int main() {
 //         mkdir(dirName, 0777);
 // #endif
 
-//         // Save state for plotting in real time
-//         if (plotRealTime || t >= tEnd) {
-//             char filename[50];
-//             sprintf(filename, "%s/output_%d.txt", dirName, outputCount);
-//             save_to_file(U, mask, N, filename);
-//             outputCount++;
-//         }
+        // Save state for plotting in real time
+        if (plotRealTime || t >= tEnd) {
+            char filename[50];
+            sprintf(filename, "%s/output_%d.txt", dirName, outputCount);
+            save_to_file(U, mask, N, filename);
+            outputCount++;
+        }
 
     }
     end = clock();
