@@ -22,3 +22,5 @@
 
 **Example output image of the serial version:**
 
+![Image text](seq/Figure_1.png)
+
