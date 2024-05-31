@@ -1,3 +1,12 @@
+/**
+ * @file main.c
+ * @brief Main simulation for wave propagation using finite differences.
+ * 
+ * This program simulates wave propagation in a medium with given boundary conditions.
+ * It saves intermediate results to files for visualization with outputdata_show.py.
+ * Note: Saving data significantly affects performance, disable it for timing measurements.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -17,29 +26,27 @@ void save_to_file(double *U, bool *mask, int N, const char *filename);
 #define M_PI 3.14159265358979323846
 #endif
 
-/** 
- * Main function to execute the wave propagation simulation.
- * Initializes arrays, applies boundary conditions, updates arrays,
- * and saves output to a file.
+/**
+ * Main execution function for the simulation.
+ * Initializes arrays, runs the simulation loop, and saves output for visualization.
  */
 int main() {
     clock_t start, end;
     double cpu_time_used;
     
     // Simulation parameters
-    int N = 256;          // resolution
-    double boxsize = 1.0; // box size
-    double c = 1.0;       // wave speed
-    double t = 0.0;       // time
-    double tEnd = 2.0;    // stop time
-    bool plotRealTime = true; // switch for plotting simulation in real time
+    int N = 256;          ///< Grid resolution
+    double boxsize = 1.0; ///< Size of the simulation box
+    double c = 1.0;       ///< Wave speed
+    double t = 0.0;       ///< Initial time
+    double tEnd = 2.0;    ///< End time for the simulation
+    bool plotRealTime = true; ///< Flag to control real-time plotting
 
     // Mesh parameters
     double dx = boxsize / N;
     double dt = (sqrt(2) / 2) * dx / c;
     double fac = dt * dt * c * c / (dx * dx);
 
-    // Array initialization for simulation
     double *U = (double *)calloc(N * N, sizeof(double));
     double *Uprev = (double *)calloc(N * N, sizeof(double));
     bool *mask = (bool *)calloc(N * N, sizeof(bool));
@@ -64,6 +71,23 @@ int main() {
         t += dt;
 
         printf("Time: %f\n", t);
+
+//         // Create directory if it doesn't exist
+//         const char *dirName = "outputdata";
+// #ifdef _WIN32
+//         mkdir(dirName);
+// #else
+//         mkdir(dirName, 0777);
+// #endif
+
+//         // Save state for plotting in real time
+//         if (plotRealTime || t >= tEnd) {
+//             char filename[50];
+//             sprintf(filename, "%s/output_%d.txt", dirName, outputCount);
+//             save_to_file(U, mask, N, filename);
+//             outputCount++;
+//         }
+
     }
     end = clock();
     // Final save
@@ -84,12 +108,12 @@ int main() {
     return 0;
 }
 
-/** 
- * Initializes simulation arrays with default values and boundary masks.
- * @param U Pointer to the array storing the wave field.
- * @param mask Pointer to the array storing boundary masks.
+/**
+ * @brief Initializes the simulation arrays and boundary mask.
+ * @param U Pointer to the wave field array.
+ * @param mask Pointer to the boundary mask array.
  * @param N Size of the grid.
- */
+ */ 
 void initialize_arrays(double *U, bool *mask, int N) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -110,10 +134,10 @@ void initialize_arrays(double *U, bool *mask, int N) {
     }
 }
 
-/** 
- * Applies boundary conditions to the wave field based on the current simulation time.
+/**
+ * @brief Applies boundary conditions to the wave field.
  * @param U Pointer to the wave field array.
- * @param xlin Pointer to the array of linear space coordinates.
+ * @param xlin Pointer to the array of x linear space coordinates.
  * @param mask Pointer to the boundary mask array.
  * @param N Size of the grid.
  * @param t Current simulation time.
@@ -129,13 +153,14 @@ void apply_boundary_conditions(double *U, double *xlin, bool *mask, int N, doubl
     }
 }
 
-/** 
- * Updates the wave field arrays for the next time step.
+
+/**
+ * @brief Updates the wave field array for the next time step.
  * @param U Pointer to the current wave field array.
  * @param Uprev Pointer to the previous wave field array.
  * @param laplacian Pointer to the array containing the Laplacian of U.
  * @param N Size of the grid.
- * @param fac Factor used in the finite difference scheme.
+ * @param fac Precomputed factor used in the update formula.
  */
 void update_arrays(double *U, double *Uprev, double *laplacian, int N, double fac) {
     double *Unew = (double *)malloc(N * N * sizeof(double));
@@ -147,8 +172,8 @@ void update_arrays(double *U, double *Uprev, double *laplacian, int N, double fa
     free(Unew);
 }
 
-/** 
- * Computes the Laplacian of the wave field using finite difference methods.
+/**
+ * @brief Computes the Laplacian of the wave field using finite difference.
  * @param U Pointer to the wave field array.
  * @param laplacian Pointer to the array where the Laplacian will be stored.
  * @param N Size of the grid.
@@ -162,8 +187,9 @@ void compute_laplacian(double *U, double *laplacian, int N) {
     }
 }
 
-/** 
- * Saves the current state of the wave field to a file.
+
+/**
+ * @brief Saves the current state of the wave field to a file.
  * @param U Pointer to the wave field array.
  * @param mask Pointer to the boundary mask array.
  * @param N Size of the grid.

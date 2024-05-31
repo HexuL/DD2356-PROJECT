@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>seq: seq.c File Reference</title>
+<title>My Project: seq.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">seq
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -106,14 +106,19 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a922ae9b686995b1983ec8855952918eb" id="r_a922ae9b686995b1983ec8855952918eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a922ae9b686995b1983ec8855952918eb">initialize_arrays</a> (double *U, bool *mask, int N)</td></tr>
+<tr class="memdesc:a922ae9b686995b1983ec8855952918eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the simulation arrays and boundary mask.  <br /></td></tr>
 <tr class="separator:a922ae9b686995b1983ec8855952918eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab73db296c76d58dc2cf5005273f7e2d4" id="r_ab73db296c76d58dc2cf5005273f7e2d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab73db296c76d58dc2cf5005273f7e2d4">apply_boundary_conditions</a> (double *U, double *xlin, bool *mask, int N, double t)</td></tr>
+<tr class="memdesc:ab73db296c76d58dc2cf5005273f7e2d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies boundary conditions to the wave field.  <br /></td></tr>
 <tr class="separator:ab73db296c76d58dc2cf5005273f7e2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99248bea1b6ea8404ecad9e15e359d41" id="r_a99248bea1b6ea8404ecad9e15e359d41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99248bea1b6ea8404ecad9e15e359d41">update_arrays</a> (double *U, double *Uprev, double *laplacian, int N, double fac)</td></tr>
+<tr class="memdesc:a99248bea1b6ea8404ecad9e15e359d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the wave field array for the next time step.  <br /></td></tr>
 <tr class="separator:a99248bea1b6ea8404ecad9e15e359d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1553de1fd0464f6bb03b827eb7992657" id="r_a1553de1fd0464f6bb03b827eb7992657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1553de1fd0464f6bb03b827eb7992657">compute_laplacian</a> (double *U, double *laplacian, int N)</td></tr>
+<tr class="memdesc:a1553de1fd0464f6bb03b827eb7992657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Laplacian of the wave field using finite difference.  <br /></td></tr>
 <tr class="separator:a1553de1fd0464f6bb03b827eb7992657"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45243ed06627278a18343a6e1d5b085c" id="r_a45243ed06627278a18343a6e1d5b085c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45243ed06627278a18343a6e1d5b085c">save_to_file</a> (double *U, bool *mask, int N, const char *filename)</td></tr>
+<tr class="memdesc:a45243ed06627278a18343a6e1d5b085c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the wave field to a file.  <br /></td></tr>
 <tr class="separator:a45243ed06627278a18343a6e1d5b085c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,10 +172,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Applies boundary conditions to the wave field based on the current simulation time. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Applies boundary conditions to the wave field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">U</td><td>Pointer to the wave field array. </td></tr>
-    <tr><td class="paramname">xlin</td><td>Pointer to the array of linear space coordinates. </td></tr>
+    <tr><td class="paramname">xlin</td><td>Pointer to the array of x linear space coordinates. </td></tr>
     <tr><td class="paramname">mask</td><td>Pointer to the boundary mask array. </td></tr>
     <tr><td class="paramname">N</td><td>Size of the grid. </td></tr>
     <tr><td class="paramname">t</td><td>Current simulation time. </td></tr>
@@ -203,7 +210,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Computes the Laplacian of the wave field using finite difference methods. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Computes the Laplacian of the wave field using finite difference. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">U</td><td>Pointer to the wave field array. </td></tr>
     <tr><td class="paramname">laplacian</td><td>Pointer to the array where the Laplacian will be stored. </td></tr>
@@ -237,10 +246,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initializes simulation arrays with default values and boundary masks. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Initializes the simulation arrays and boundary mask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">U</td><td>Pointer to the array storing the wave field. </td></tr>
-    <tr><td class="paramname">mask</td><td>Pointer to the array storing boundary masks. </td></tr>
+    <tr><td class="paramname">U</td><td>Pointer to the wave field array. </td></tr>
+    <tr><td class="paramname">mask</td><td>Pointer to the boundary mask array. </td></tr>
     <tr><td class="paramname">N</td><td>Size of the grid. </td></tr>
   </table>
   </dd>
@@ -262,7 +273,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Main function to execute the wave propagation simulation. Initializes arrays, applies boundary conditions, updates arrays, and saves output to a file. </p>
+<p>Main execution function for the simulation. Initializes arrays, runs the simulation loop, and saves output for visualization. </p>
+<p>&lt; Grid resolution</p>
+<p>&lt; Size of the simulation box</p>
+<p>&lt; Wave speed</p>
+<p>&lt; Initial time</p>
+<p>&lt; End time for the simulation</p>
+<p>&lt; Flag to control real-time plotting</p>
 
 </div>
 </div>
@@ -294,7 +311,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Saves the current state of the wave field to a file. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Saves the current state of the wave field to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">U</td><td>Pointer to the wave field array. </td></tr>
     <tr><td class="paramname">mask</td><td>Pointer to the boundary mask array. </td></tr>
@@ -339,13 +358,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Updates the wave field arrays for the next time step. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Updates the wave field array for the next time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">U</td><td>Pointer to the current wave field array. </td></tr>
     <tr><td class="paramname">Uprev</td><td>Pointer to the previous wave field array. </td></tr>
     <tr><td class="paramname">laplacian</td><td>Pointer to the array containing the Laplacian of U. </td></tr>
     <tr><td class="paramname">N</td><td>Size of the grid. </td></tr>
-    <tr><td class="paramname">fac</td><td>Factor used in the finite difference scheme. </td></tr>
+    <tr><td class="paramname">fac</td><td>Precomputed factor used in the update formula. </td></tr>
   </table>
   </dd>
 </dl>
