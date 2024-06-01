@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch MPI Program",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/mpi_wave_simulation.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable MPI",
+          "text": "set print thread-events off",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build MPI Program",
+      "miDebuggerPath": "gdb.exe",
+      "miDebuggerArgs": "",
+      "targetArchitecture": "x86_64"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "d:/Master's/DD2356/project/mpi_project",
+      "program": "d:/Master's/DD2356/project/mpi_project/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

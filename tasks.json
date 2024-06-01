@@ -2,22 +2,20 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build with OpenMP",
+            "label": "Build MPI Program",
             "type": "shell",
-            "command": "g++",
+            "command": "D:\\Master's\\DD2356\\MPI\\Bin\\mpicc.exe",  // Update with your actual path
             "args": [
-                "-g",
-                "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "-fopenmp"
+                "mpi_wave_simulation.exe",
+                "mpi_wave_simulation.c"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "detail": "Compiled task by user with OpenMP support."
+            "detail": "Generated task for building MPI program"
         }
     ]
 }
