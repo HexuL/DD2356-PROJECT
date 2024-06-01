@@ -42,3 +42,5 @@ srun -n 1 ./OPENMP
 
 
 3. **html**: Documentation generated with Doxygen.
+# MPI version
+**MPI is a folder related to MPI version code, including the following files:**
