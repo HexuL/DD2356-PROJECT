@@ -48,6 +48,7 @@ srun -n 1 ./OPENMP
 ```bash
 # Compile the program with MPI support
 gcc -I"Where your MPI SDK include path" -c mpi_wave_simulation.c -o mpi_wave_simulation.o
+gcc -o mpi_wave_simulation.exe mpi_wave_simulation.o -L"Where your \MPI\SDK\Lib\x64" -lmsmpi -lmsmpifec
 
 # Run the program using mpiexec
 mpiexec -n 4 mpi_wave_simulation.exe
@@ -55,3 +56,4 @@ mpiexec -n 8 mpi_wave_simulation.exe
 mpiexec -n 16 mpi_wave_simulation.exe
 ...
 ```
+2. **html**: Documentation generated with Doxygen.
