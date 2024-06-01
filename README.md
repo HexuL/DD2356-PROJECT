@@ -24,3 +24,21 @@
 
 ![Image text](seq/Figure_1.png)
 
+# openMP verion
+**openMP is a file related to openMP version code, including the following files:**
+1. **openMPtest.c**: The main file of the openMP version. After running, the program will output the run time and create an output.txt file, which contains the simulation data at time t for plotting. To correctly obtain the OpenMP parallel computation results, use the following commands to compile and run the program on Dardel.
+
+```bash
+# Compile the program with OpenMP support
+cc -fopenmp openMPtest.c -o OPENMP
+
+# Change N to set the number of OpenMP threads. 
+export OMP_NUM_THREADS = N
+
+# Run the program using srun
+srun -n 1 ./OPENMP
+```
+2. **plot.py**: Draws a graph based on the final data saved in output.txt.
+
+
+3. **html**: Documentation generated with Doxygen.
