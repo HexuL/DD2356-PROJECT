@@ -1,6 +1,6 @@
 /**
- * @file main.c
- * @brief A simulation of wave propagation using finite difference methods.
+ * @file openMPtest.c
+ * @brief A simulation of wave propagation using finite difference methods with openMP.
  * 
  * This program simulates wave propagation in a 2D grid using the finite difference
  * method. It uses OpenMP for parallel computation and outputs the final wave
