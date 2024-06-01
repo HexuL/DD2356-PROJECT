@@ -44,3 +44,14 @@ srun -n 1 ./OPENMP
 3. **html**: Documentation generated with Doxygen.
 # MPI version
 **MPI is a folder related to MPI version code, including the following files:**
+1. **mpi_wave_simulation.c**: The main file of the MPI version. It is necessary to comment the following code:
+```bash
+# Compile the program with MPI support
+gcc -I"Where your MPI SDK include path" -c mpi_wave_simulation.c -o mpi_wave_simulation.o
+
+# Run the program using mpiexec
+mpiexec -n 4 mpi_wave_simulation.exe
+mpiexec -n 8 mpi_wave_simulation.exe
+mpiexec -n 16 mpi_wave_simulation.exe
+...
+```
